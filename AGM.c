@@ -1,17 +1,18 @@
 #include "AGM.h"
 
-void vectorInit(int *binaryVector, int size){
-	for (int i = 0; i < size; ++i)
-		binaryVector[i] = 0;
-}
-
 /* Recebe um valor inteiro e cria um Grafo do tamanho deste inteiro.
 Retorna um ponteiro do Grafo criado */
-Graph graphInit(int size){
+Graph graphInit(int size, int initiate){
     Graph A = malloc(sizeof(struct graph));
-    A->numberOfVertex = size;
+    
+    if(initiate)
+    	A->numberOfVertex = size;
+    else
+    	A->numberOfVertex = 0;
+    
     A->numberOfEdges = 0;
     A->adjacent = malloc(size*sizeof(link));
+    
     for(int i = 0; i < size; i++){
         A->adjacent[i] = NULL;
     }
@@ -59,7 +60,7 @@ Graph graphIn(char *fileAddress){
 	int numberOfVertex, numberOfEdges;
 	fscanf(fp, "%d %d", &numberOfVertex, &numberOfEdges);
 
-	Graph G = graphInit(numberOfVertex);
+	Graph G = graphInit(numberOfVertex, 1);
 	int vertexU, vertexV, wheightW;
 	while((fscanf(fp, "%d %d %d", &vertexU, &vertexV, &wheightW)) != EOF){
 		insertEdge(G , vertexU, vertexV, wheightW);
@@ -68,16 +69,31 @@ Graph graphIn(char *fileAddress){
 	return G;
 }
 
-void printGraph(Graph A){
+void graphOut(Graph A){
 	printf("%d %d\n", A->numberOfVertex, A->numberOfEdges);
 	for (int i = 0; i < A->numberOfVertex; ++i){
 		for (link a  = A->adjacent[i]; a != NULL; a = a->next)
-			// if(i < a->vertex)
+			if(i < a->vertex)
 				printf("%d %d %d\n", i, a->vertex, a->wheight);
 	}
 }
 
-Graph minimumSpanningTree(Graph G){
-	return A;
+link leastWheight(Graph G, Graph A){
+	for (int i = 0; i < G->numberOfVertex; ++i){
+		for (link a = A->adjacent[i])
+
+	}
 }
+
+/*Recebe o Grafo G e cria um grafo A, que é uma Arvore Geradora Mínima de G*/
+Graph minimumSpanningTree(Graph G){
+	/*Cria Grafo A, com o numero de vértices de G*/
+	Graph A = graphInit(G->numberOfVertex, 0);
+	while(A->numberOfVertex != G->numberOfVertex){
+		
+		A->numberOfVertex++;
+	}
+	
+}
+
 

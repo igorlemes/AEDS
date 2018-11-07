@@ -10,16 +10,16 @@ struct graph {
 typedef struct graph *Graph;
 
 struct node{
+	int added;
 	int vertex;
 	int wheight;
 	link next;
 };
 
-void vectorInit(int *binaryVector, int size);
 Graph minimumSpanningTree(Graph G);
-Graph graphInit(int size);
+Graph graphInit(int size, int initiate);
 link newNode(int vertexW, int wheightW, link next);
 void insertEdge(Graph A, int vertexV, int vertexW, int wheightW);
 int isEdge(Graph A, int vertexV, int vertexW);
 Graph graphIn(char *fileAddress);
-void printGraph(Graph A);
+void graphOut(Graph A);
