@@ -9,3 +9,4 @@ https://linux.die.net/man/3/getline
 https://stackoverflow.com/questions/3501338/c-read-file-line-by-line
 https://www.tutorialspoint.com/c_standard_library/c_function_fgets.htm
 https://www.tutorialspoint.com/c_standard_library/c_function_fscanf.htm
+https://stackoverflow.com/questions/5134891/how-do-i-use-valgrind-to-find-memory-leaks

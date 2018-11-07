@@ -15,6 +15,17 @@ struct node{
 	link next;
 };
 
+
+void vectorInit(int *binaryVector, int size);
+Graph minimumSpanningTree(Graph G);
+Graph graphInit(int size);
+link newNode(int vertexW, int wheightW, link next);
+void insertEdge(Graph A, int vertexV, int vertexW, int wheightW);
+int isEdge(Graph A, int vertexV, int vertexW);
+Graph graphIn(char *fileAddress);
+void printGraph(Graph A);
+
+
 void vectorInit(int *binaryVector, int size){
 	for (int i = 0; i < size; ++i)
 		binaryVector[i] = 0;
@@ -53,13 +64,13 @@ link newNode(int vertexW, int wheightW, link next){
 }
 
 void insertEdge(Graph A, int vertexV, int vertexW, int wheightW){
-	if(isEdge(vertexV, vertexW)) return;
+	if(isEdge(A, vertexV, vertexW)) return;
 	A->adjacent[vertexV] = newNode(vertexW, wheightW, A->adjacent[vertexV]);
 	A->adjacent[vertexW] = newNode(vertexV, wheightW, A->adjacent[vertexW]);
 	A->numberOfEdges++;
 }
 
-int isEdge(int vertexV, vertexW){
+int isEdge(Graph A, int vertexV, int vertexW){
 	for (link a  = A->adjacent[vertexV]; a != NULL; a = a->next)
 		if(a->vertex == vertexW) return 1;
 	return 0;
@@ -71,14 +82,13 @@ Graph graphIn(char *fileAddress){
 	fp = fopen(fileAddress, "r");
 	if(fp == NULL)
 		perror("The file does not have been passed\n");
-		return -1;
 	
 	int numberOfVertex, numberOfEdges;
-	fscanf(fp, "%d %d", numberOfVertex, numberOfEdges);
+	fscanf(fp, "%d %d", &numberOfVertex, &numberOfEdges);
 
 	Graph G = graphInit(numberOfVertex);
 	int vertexU, vertexV, wheightW;
-	while((fscanf(fp, "%d %d %d", vertexU, vertexV, wheightW)) != EOF){
+	while((fscanf(fp, "%d %d %d", &vertexU, &vertexV, &wheightW)) != EOF){
 		insertEdge(G , vertexU, vertexV, wheightW);
 	}
 	fclose(fp);
@@ -111,8 +121,19 @@ Graph graphIn(char *fileAddress){
 
 // }
 
-// void imprimeAresta(){}
+//Melhorar
+void printGraph(Graph A){
+	for (int i = 0; i < A->numberOfVertex; ++i){
+		printf("%d\n", i);
+		for (link a  = A->adjacent[i]; a != NULL; a = a->next)
+			printf("Aresta u: %d\tAresta v:%d\tPeso%d\n", i, a->vertex, a->wheight);
+
+	}
+}
 
 int main(int argc, char **argv){
-	
+	Graph G = graphIn("entrada.txt");
+	printGraph(G);
+	free(G);
+	return 0;
 }
