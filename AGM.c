@@ -52,15 +52,19 @@ link newNode(int vertexW, int wheightW, link next){
  Ao final, é aumentado em um o numero de arestas no grafo
 */
 void insertEdge(Graph A, int vertexV, int vertexW, int wheightW){
+	/*Verifica se já não possuem uma aresta, caso possua, simplesmente retorna*/
 	if(isEdge(A, vertexV, vertexW)) return;
+	/*caso não haja uma aresta, ela é criada, nas duas direções*/
 	A->adjacent[vertexV] = newNode(vertexW, wheightW, A->adjacent[vertexV]);
 	A->adjacent[vertexW] = newNode(vertexV, wheightW, A->adjacent[vertexW]);
+	/*O numero de arestas é atualizado*/
 	A->numberOfEdges++;
 }
 
 
 /*Verifica se dois vertices possuem arestas ligando-os em um grafo A*/
 int isEdge(Graph A, int vertexV, int vertexW){
+	/*Itera sobre a lista de adjacencia de um vertice e verifica se ele possui aresta com o outro vertice*/
 	for (link a  = A->adjacent[vertexV]; a != NULL; a = a->next)
 		if(a->vertex == vertexW) return 1;
 	return 0;
@@ -68,7 +72,7 @@ int isEdge(Graph A, int vertexV, int vertexW){
 
 /**/
 Graph graphIn(char *fileAddress){
-	
+	/*Abre o arquivo*/
 	FILE *fp;
 	fp = fopen(fileAddress, "r");
 	if(fp == NULL)
