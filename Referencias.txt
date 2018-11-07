@@ -4,3 +4,4 @@ Referências Bibliograficas
 
 https://stackoverflow.com/questions/2060974/how-to-include-a-dynamic-array-inside-a-struct-in-c
 http://www.ic.unicamp.br/~ra069320/PED/MC102/1s2008/Apostilas/Cap10.pdf
+https://www.ime.usp.br/~pf/algoritmos_para_grafos/aulas/graphdatastructs.html

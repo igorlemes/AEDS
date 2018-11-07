@@ -1,16 +1,20 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef struct lista{
-    int Aresta;
-    int Vertice;
-    struct lista *proximo;
-} lista;
+struct graph {
+    int numberOfVertex;
+    int numberOfEdges;
+    link *adjacent;
+};
+typedef struct graph *Graph;
 
-typedef struct {
-    int tamanhoGrafo;
-    lista **Vertices;
-} grafo;
+typedef struct node *link
+struct node{
+	int vertex;
+	int wheight;
+	link next;
+};
 
-
-grafo ArvoreGeradoraMinima(grafo G);
+// grafo ArvoreGeradoraMinima(grafo G);
+// grafo *CriaGrafo(int tamanho);
+// void incluirInicio(grafo *A, lista *B);
