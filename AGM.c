@@ -8,19 +8,27 @@ void initVector(int *vector, int size){
 /* Recebe um valor inteiro e cria um Grafo do tamanho deste inteiro.
 Retorna um ponteiro do Grafo criado */
 Graph graphInit(int size, int initiate){
+
+	/*Aloca memória para o grafo*/
     Graph A = malloc(sizeof(struct graph));
     
+    /*Caso seja um grafo recebido do terminal, ele será totalmente inicializado*/
     if(initiate)
     	A->numberOfVertex = size;
+    /*Caso contrario, ele não terá vertices nem arestas*/
     else
     	A->numberOfVertex = 0;
     
+
+    /*O Grafo começa com nenhuma aresta, então alocamos memória para as listas de adjacencia*/
     A->numberOfEdges = 0;
     A->adjacent = malloc(size*sizeof(link));
-    
+ 	
+ 	/*definimos todas as adjacências dos vertices como nulas*/   
     for(int i = 0; i < size; i++){
         A->adjacent[i] = NULL;
     }
+    /*retornamos o grafo*/
     return A;
 }
 
