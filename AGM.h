@@ -23,3 +23,4 @@ void insertEdge(Graph A, int vertexV, int vertexW, int wheightW);
 int isEdge(Graph A, int vertexV, int vertexW);
 Graph graphIn(char *fileAddress);
 void graphOut(Graph A);
+void initVector(int *vector);
