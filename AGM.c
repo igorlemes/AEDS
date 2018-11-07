@@ -14,10 +14,12 @@ struct node{
 	int wheight;
 	link next;
 };
+
 void vectorInit(int *binaryVector, int size){
 	for (int i = 0; i < size; ++i)
 		binaryVector[i] = 0;
 }
+
 Graph minimumSpanningTree(Graph G){
 	Graph A = graphInit(G->numberOfVertex);
 	
@@ -63,6 +65,27 @@ int isEdge(int vertexV, vertexW){
 	return 0;
 }
 
+Graph graphIn(char *fileAddress){
+	
+	FILE *fp;
+	fp = fopen(fileAddress, "r");
+	if(fp == NULL)
+		perror("The file does not have been passed\n");
+		return -1;
+	
+	int numberOfVertex, numberOfEdges;
+	fscanf(fp, "%d %d", numberOfVertex, numberOfEdges);
+
+	Graph G = graphInit(numberOfVertex);
+	int vertexU, vertexV, wheightW;
+	while((fscanf(fp, "%d %d %d", vertexU, vertexV, wheightW)) != EOF){
+		insertEdge(G , vertexU, vertexV, wheightW);
+	}
+	fclose(fp);
+	return G;
+} 
+
+
 // void insertFirst(Graph A, int vertex, ){
 // 	lista *aux = listaVazia(0);
 // 	for (int i = 0; i < A->tamanhoGrafo; ++i){
@@ -75,32 +98,21 @@ int isEdge(int vertexV, vertexW){
 // 	}
 // }
 
-void arestaMenorPeso(grafo *A, int vertice){
-	for (int i = 0; i < A->tamanhoGrafo; ++i){
-		if(A->vertices[i]->vertice == vertice){ //Change
-			lista *aux = listaVazia();
-			while()
-		}
-	}
+// void arestaMenorPeso(grafo *A, int vertice){
+// 	for (int i = 0; i < A->tamanhoGrafo; ++i){
+// 		if(A->vertices[i]->vertice == vertice){ //Change
+// 			lista *aux = listaVazia();
+// 			while()
+// 		}
+// 	}
+// }
+
+// int hasEdge(){
+
+// }
+
+// void imprimeAresta(){}
+
+int main(int argc, char **argv){
+	
 }
-
-int hasEdge(){
-
-}
-
-void imprimeAresta(){}
-
-Graph graphIn(char *fileAddress){
-	FILE *fp;
-	fp = fopen(fileAddress, "r");
-	if(fp == NULL)
-		perror("The file does not have been passed\n");
-		return -1;
-	
-	char str[9];
-	
-
-	fgets(line, )
-	while(fgets(line, ))
-	
-} 
