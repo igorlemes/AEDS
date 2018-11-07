@@ -72,21 +72,26 @@ int isEdge(Graph A, int vertexV, int vertexW){
 
 /**/
 Graph graphIn(char *fileAddress){
-	/*Abre o arquivo*/
+	/*Abre o arquivo, e verifica possiveis erros*/
 	FILE *fp;
 	fp = fopen(fileAddress, "r");
 	if(fp == NULL)
 		perror("The file does not have been passed\n");
 	
+	/*Adquire o numero de vertices e arestas do cabeçalho do arquivo*/
 	int numberOfVertex, numberOfEdges;
 	fscanf(fp, "%d %d", &numberOfVertex, &numberOfEdges);
 
+	/*Inicia um grafo G*/
 	Graph G = graphInit(numberOfVertex, 1);
 	int vertexU, vertexV, wheightW;
+	/*Adiciona arestas, vertices e pesos de arestas*/
 	while((fscanf(fp, "%d %d %d", &vertexU, &vertexV, &wheightW)) != EOF){
 		insertEdge(G , vertexU, vertexV, wheightW);
 	}
 	fclose(fp);
+
+	/*Retorna o Grafo*/
 	return G;
 }
 
