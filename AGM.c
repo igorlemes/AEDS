@@ -33,13 +33,17 @@ Graph graphInit(int size, int initiate){
 }
 
 
-/*cria um novo node de adjacencia
-*/
+/*cria uma nova lista de adjacencia*/
 link newNode(int vertexW, int wheightW, link next){
+	/*Aloca memória para a lista*/
 	link node = malloc(sizeof(struct node));
+	/*Define o vertice com o numero passado como argumento*/
 	node->vertex = vertexW;
+	/*Define o peso da aresta*/
 	node->wheight = wheightW;
+	/*Aponta para o proximo item da lista*/
 	node->next = next;
+	/*Retorna a nova lista de adjacencia*/
 	return node;
 }
 
