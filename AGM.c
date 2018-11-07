@@ -78,20 +78,57 @@ void graphOut(Graph A){
 	}
 }
 
-link leastWheight(Graph G, Graph A){
-	for (int i = 0; i < G->numberOfVertex; ++i){
-		for (link a = A->adjacent[i])
+link leastWheight(Graph G, Graph A, int *binaryVector){
+	/*Aloca memória de um link auxiliar*/
+	link aux = malloc(sizeof(struct node));
 
+	/*Define um peso grande, para que seja facilmente substituido*/
+	aux->wheight = 2000000;
+	
+	/*Itera sobre os vertices do Grafo G*/
+	for (int i = 0; i < G->numberOfVertex; ++i){
+	
+		/*Verifica que o Vertice já está na AGM*/
+		if(binaryVector[i]){
+	
+			/*Itera sobre os adjacentes ao Vertice i*/
+			for (link a = A->adjacent[i]; a != NULL; a = a->next){
+	
+				/*Verifica se o peso do adjacente atual é menor que o segurado pelo auxiliar*/
+				if(a->wheight < aux->wheight){
+					
+					/*Verifica se será criada uma aresta com um vertice até então fora da AGM.*/
+					if(!binaryVector[a->vertex]){
+						/*Atribui a para o auxiliar*/
+						aux = a;
+					}
+				}
+			}
+		}
 	}
+	/*Retorna o auxiliar*/
+	return aux;
 }
 
 /*Recebe o Grafo G e cria um grafo A, que é uma Arvore Geradora Mínima de G*/
 Graph minimumSpanningTree(Graph G){
+
 	/*Cria Grafo A, com o numero de vértices de G*/
 	Graph A = graphInit(G->numberOfVertex, 0);
+
+	/*Cria node e binaryVector que será adicionado à arvore geradora e usado para gerenciamento, respectivamente*/
+	link aux = malloc(sizeof(struct node));
+	int binaryVector[G->numberOfVertex];
+	
+
+	/*Um laço para que a função continue até adicionar todos os Vertices do Grafo G*/
 	while(A->numberOfVertex != G->numberOfVertex){
 		
-		A->numberOfVertex++;
+		/*Atribuindo o aux como uma representação da aresta mais barata conectando um Vertice dentro da arvore e um vertice fora*/
+		aux = leastWheight(G, A, binaryVector);
+		
+		/*Insere uma aresta na AGM*/
+		insertEdge(A, int vertexV, int vertexW, int wheightW)
 	}
 	
 }

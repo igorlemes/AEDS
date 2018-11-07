@@ -10,9 +10,9 @@ struct graph {
 typedef struct graph *Graph;
 
 struct node{
-	int added;
-	int vertex;
 	int wheight;
+	int vertex;
+	int added;
 	link next;
 };
 
