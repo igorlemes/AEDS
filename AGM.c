@@ -96,20 +96,14 @@ Graph graphIn(char *fileAddress){
 // 	}
 // }
 
-// void arestaMenorPeso(grafo *A, int vertice){
-// 	for (int i = 0; i < A->tamanhoGrafo; ++i){
-// 		if(A->vertices[i]->vertice == vertice){ //Change
-// 			lista *aux = listaVazia();
-// 			while()
-// 		}
-// 	}
-// }
+int smallerWheight(Graph A, int vertice){
+	int aux = ->adjacent[vertice]->wheight;
+	for (link a  = A->adjacent[vertice]; a != NULL; a = a->next)			
+		if (a->wheight < aux)
+			aux = a->wheight;
+	return aux;
+}
 
-// int hasEdge(){
-
-// }
-
-//Melhorar
 void printGraph(Graph A){
 	printf("%d %d\n", A->numberOfVertex, A->numberOfEdges);
 	for (int i = 0; i < A->numberOfVertex; ++i){
@@ -122,13 +116,17 @@ void printGraph(Graph A){
 
 Graph minimumSpanningTree(Graph G){
 	Graph A = graphInit(G->numberOfVertex);
+		
+	int binaryVector[G->numberOfVertex];
+	vectorInit(binaryVector, G->numberOfVertex);
 	
+	binaryVector[0] = 1;
 	
-	// int added[G->numberOfVertex];
-	// vectorInit(added, G->numberOfVertex);
-	int added = -1;
 	while(A->numberOfEdges != (A->numberOfVertex-1)){
-
+		for(int i = 0; i < A->numberOfVertex; ++i){
+			if(binaryVector[i])
+				smallerWheight(Graph A, )	
+		}	
 	}   
 }
 
