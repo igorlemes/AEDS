@@ -44,21 +44,29 @@ Graph graphInit(int size){
     return A;
 }
 
+/*Funcão que recebe um ponteiro de Grafo, um vertice e um vetor binario
+Atravez de um struct auxiliar, guardamos  o primeiro node
+Ela percorre a lista de adjacencia do vertice passado,
+Se o vertice adjacente não foi adicionado no Segundo Grafo (verifica no vetor binário)
+ele compara os valores com o node auxiliar, ao chegar no final, o auxiliar tem o node com menor peso, que ainda não foi adicionado
+*/
 link smallerWheight(Graph A, int vertice, int *binaryVector){
 	link aux = malloc(sizeof(struct node)); 
-	aux = A->adjacent[vertice];
+	aux = A->adjacent[vertice];s
 	for (link a = A->adjacent[vertice]; a != NULL; a = a->next)	{		
 		if (!binaryVector[a->vertex])
 			if ((a->wheight) < (aux->wheight)){
 				printf("w %d\n", a->wheight);				
-				aux->vertex = a->vertex;
-				aux->wheight = a->wheight;
-				aux->next = a->next;
-			}		
+				aux = a;
 	}
 	return aux;
 }
 
+
+/*Insere uma nova adjacencia a lista 
+
+
+*/
 link newNode(int vertexW, int wheightW, link next){
 	link node = malloc(sizeof(struct node));
 	node->vertex = vertexW;
