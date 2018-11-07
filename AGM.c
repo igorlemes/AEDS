@@ -24,7 +24,7 @@ void insertEdge(Graph A, int vertexV, int vertexW, int wheightW);
 int isEdge(Graph A, int vertexV, int vertexW);
 Graph graphIn(char *fileAddress);
 void printGraph(Graph A);
-
+link smallerWheight(Graph A, int vertice, int *binaryVector);
 
 void vectorInit(int *binaryVector, int size){
 	for (int i = 0; i < size; ++i)
@@ -43,6 +43,22 @@ Graph graphInit(int size){
     }
     return A;
 }
+
+link smallerWheight(Graph A, int vertice, int *binaryVector){
+	link aux = malloc(sizeof(struct node)); 
+	aux = A->adjacent[vertice];
+	for (link a = A->adjacent[vertice]; a != NULL; a = a->next)	{		
+		if (!binaryVector[a->vertex])
+			if ((a->wheight) < (aux->wheight)){
+				printf("w %d\n", a->wheight);				
+				aux->vertex = a->vertex;
+				aux->wheight = a->wheight;
+				aux->next = a->next;
+			}		
+	}
+	return aux;
+}
+
 link newNode(int vertexW, int wheightW, link next){
 	link node = malloc(sizeof(struct node));
 	node->vertex = vertexW;
@@ -96,20 +112,12 @@ Graph graphIn(char *fileAddress){
 // 	}
 // }
 
-int smallerWheight(Graph A, int vertice, int *binaryVector){
-	int aux = A->adjacent[vertice]->wheight;
-	for (link a  = A->adjacent[vertice]; a != NULL; a = a->next)			
-		if (binaryVector[link->vertex])
-			if (a->wheight < aux)
-				aux = a->wheight;
-	return aux;
-}
 
 void printGraph(Graph A){
 	printf("%d %d\n", A->numberOfVertex, A->numberOfEdges);
 	for (int i = 0; i < A->numberOfVertex; ++i){
 		for (link a  = A->adjacent[i]; a != NULL; a = a->next)
-			if(i < a->vertex)
+			// if(i < a->vertex)
 				printf("%d %d %d\n", i, a->vertex, a->wheight);
 
 	}
@@ -122,19 +130,68 @@ Graph minimumSpanningTree(Graph G){
 	vectorInit(binaryVector, G->numberOfVertex);
 	
 	binaryVector[0] = 1;
-	
-	while(A->numberOfEdges != (A->numberOfVertex-1)){
+	link aux = smallerWheight(G, 0, binaryVector);
+	insertEdge(A, 0, aux->vertex, aux->wheight);
+
+	binaryVector[1] = 1;
+
+	int aux2;
+	while(A->numberOfEdges < (A->numberOfVertex-1)){
 		for(int i = 0; i < A->numberOfVertex; ++i){
 			if(binaryVector[i])
-				smallerWheight(Graph A, i, )	
-		}	
-	}   
+				aux = smallerWheight(G, i, binaryVector);
+				aux2 = i;
+		}
+		insertEdge(A, aux2, aux->vertex, aux->wheight);
+		binaryVector[aux2] = 1;
+	}
+
+	return A;
 }
 
 int main(int argc, char **argv){
 	Graph G = graphIn("entrada.txt");
-	printGraph(G);
-	free(G);
+	Graph A = graphInit(G->numberOfVertex);
+	// printGraph(G);
+
+	int binaryVector[G->numberOfVertex];
+	vectorInit(binaryVector, G->numberOfVertex);
+	
+	binaryVector[0] = 1;
+	link aux1 = malloc(sizeof(struct node)); 
+	link aux2 = malloc(sizeof(struct node)); 
+
+	aux1 = smallerWheight(G, 0, binaryVector);
+	insertEdge(A, 0, aux1->vertex, aux1->wheight);
+	binaryVector[aux1->vertex] = 1;	
+
+	
+	// aux1 = smallerWheight(G, 0, binaryVector);
+	// aux2 = smallerWheight(G, 1, binaryVector);
+	// if(aux1->wheight <= aux2->wheight && !binaryVector[aux1->vertex]){
+	// 	insertEdge(A, 0, aux1->vertex, aux1->wheight);
+	// 	binaryVector[aux1->vertex] = 1;
+	// 	printf("a %d\n", aux1->wheight);
+	// } else {
+	// 	insertEdge(A, 1, aux2->vertex, aux2->wheight);
+	// 	binaryVector[aux2->vertex] = 1;
+	// 	printf("b %d\n", aux2->wheight);
+	// }
+
+	
+	
+
+	// for (int i = 0; i < G->numberOfVertex; ++i)
+	// {
+	// 	printf("%d\n", binaryVector[i]);	
+	// }
+		
+	// A = minimumSpanningTree(G);
+	
+	// printf("\n\n");
+	printGraph(A);
+	// free(G);
+	// free(A);
 	return 0;
 }
 
