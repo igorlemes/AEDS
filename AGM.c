@@ -31,18 +31,6 @@ void vectorInit(int *binaryVector, int size){
 		binaryVector[i] = 0;
 }
 
-Graph minimumSpanningTree(Graph G){
-	Graph A = graphInit(G->numberOfVertex);
-	
-	int added = 0;
-	int binaryVector[G->numberOfVertex];
-	vectorInit(binaryVector, G->numberOfVertex);
-
-	while(added != G->numberOfVertex){
-
-	}   
-}
-
 /* Recebe um valor inteiro e cria um Grafo do tamanho deste inteiro.
 Retorna um ponteiro do Grafo criado */
 Graph graphInit(int size){
@@ -123,12 +111,25 @@ Graph graphIn(char *fileAddress){
 
 //Melhorar
 void printGraph(Graph A){
+	printf("%d %d\n", A->numberOfVertex, A->numberOfEdges);
 	for (int i = 0; i < A->numberOfVertex; ++i){
-		printf("%d\n", i);
 		for (link a  = A->adjacent[i]; a != NULL; a = a->next)
-			printf("Aresta u: %d\tAresta v:%d\tPeso%d\n", i, a->vertex, a->wheight);
+			if(i < a->vertex)
+				printf("%d %d %d\n", i, a->vertex, a->wheight);
 
 	}
+}
+
+Graph minimumSpanningTree(Graph G){
+	Graph A = graphInit(G->numberOfVertex);
+	
+	
+	// int added[G->numberOfVertex];
+	// vectorInit(added, G->numberOfVertex);
+	int added = -1;
+	while(A->numberOfEdges != (A->numberOfVertex-1)){
+
+	}   
 }
 
 int main(int argc, char **argv){
@@ -137,3 +138,4 @@ int main(int argc, char **argv){
 	free(G);
 	return 0;
 }
+
