@@ -1,5 +1,10 @@
 #include "AGM.h"
 
+/*Uma função para iniciarlizar vetores com zeros*/
+void initVector(int *vector, int size){
+	for (int i = 0; i < size; ++i)
+		binaryVector[i] = 0;
+}
 /* Recebe um valor inteiro e cria um Grafo do tamanho deste inteiro.
 Retorna um ponteiro do Grafo criado */
 Graph graphInit(int size, int initiate){
@@ -101,12 +106,13 @@ link leastWheight(Graph G, Graph A, int *binaryVector){
 					if(!binaryVector[a->vertex]){
 						/*Atribui a para o auxiliar*/
 						aux = a;
+						aux->added = i;
 					}
 				}
 			}
 		}
 	}
-	/*Retorna o auxiliar*/
+	/*Retorna o auxiliar, com o menor peso e as informações dos vertices que serão ligados*/
 	return aux;
 }
 
@@ -119,7 +125,11 @@ Graph minimumSpanningTree(Graph G){
 	/*Cria node e binaryVector que será adicionado à arvore geradora e usado para gerenciamento, respectivamente*/
 	link aux = malloc(sizeof(struct node));
 	int binaryVector[G->numberOfVertex];
-	
+	initVector(binaryVector, G->numberOfVertex);
+
+	/*Inicia o Grafo adicionando o vertice 0*/
+	binaryVector[0] = 1;
+	A->numberOfVertex++;
 
 	/*Um laço para que a função continue até adicionar todos os Vertices do Grafo G*/
 	while(A->numberOfVertex != G->numberOfVertex){
