@@ -5,3 +5,7 @@ Referências Bibliograficas
 https://stackoverflow.com/questions/2060974/how-to-include-a-dynamic-array-inside-a-struct-in-c
 http://www.ic.unicamp.br/~ra069320/PED/MC102/1s2008/Apostilas/Cap10.pdf
 https://www.ime.usp.br/~pf/algoritmos_para_grafos/aulas/graphdatastructs.html
+https://linux.die.net/man/3/getline
+https://stackoverflow.com/questions/3501338/c-read-file-line-by-line
+https://www.tutorialspoint.com/c_standard_library/c_function_fgets.htm
+https://www.tutorialspoint.com/c_standard_library/c_function_fscanf.htm
