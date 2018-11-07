@@ -96,11 +96,12 @@ Graph graphIn(char *fileAddress){
 // 	}
 // }
 
-int smallerWheight(Graph A, int vertice){
-	int aux = ->adjacent[vertice]->wheight;
+int smallerWheight(Graph A, int vertice, int *binaryVector){
+	int aux = A->adjacent[vertice]->wheight;
 	for (link a  = A->adjacent[vertice]; a != NULL; a = a->next)			
-		if (a->wheight < aux)
-			aux = a->wheight;
+		if (binaryVector[link->vertex])
+			if (a->wheight < aux)
+				aux = a->wheight;
 	return aux;
 }
 
@@ -125,7 +126,7 @@ Graph minimumSpanningTree(Graph G){
 	while(A->numberOfEdges != (A->numberOfVertex-1)){
 		for(int i = 0; i < A->numberOfVertex; ++i){
 			if(binaryVector[i])
-				smallerWheight(Graph A, )	
+				smallerWheight(Graph A, i, )	
 		}	
 	}   
 }
