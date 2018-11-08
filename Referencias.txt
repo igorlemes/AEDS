@@ -10,3 +10,5 @@ https://stackoverflow.com/questions/3501338/c-read-file-line-by-line
 https://www.tutorialspoint.com/c_standard_library/c_function_fgets.htm
 https://www.tutorialspoint.com/c_standard_library/c_function_fscanf.htm
 https://stackoverflow.com/questions/5134891/how-do-i-use-valgrind-to-find-memory-leaks
+Novas
+https://www.geeksforgeeks.org/prims-mst-for-adjacency-list-representation-greedy-algo-6/

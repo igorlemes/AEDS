@@ -3,7 +3,7 @@
 /*Uma função para iniciarlizar vetores com zeros*/
 void initVector(int *vector, int size){
 	for (int i = 0; i < size; ++i)
-		binaryVector[i] = 0;
+		vector[i] = 0;
 }
 /* Recebe um valor inteiro e cria um Grafo do tamanho deste inteiro.
 Retorna um ponteiro do Grafo criado */
@@ -51,14 +51,20 @@ link newNode(int vertexW, int wheightW, link next){
 	vale ressaltar que a função adiciona de V para W e de W para V
  Ao final, é aumentado em um o numero de arestas no grafo
 */
-void insertEdge(Graph A, int vertexV, int vertexW, int wheightW){
+void insertEdge(Graph A, int vertexV, int vertexW, int wheightW, int *binaryVector){
 	/*Verifica se já não possuem uma aresta, caso possua, simplesmente retorna*/
 	if(isEdge(A, vertexV, vertexW)) return;
+	
 	/*caso não haja uma aresta, ela é criada, nas duas direções*/
 	A->adjacent[vertexV] = newNode(vertexW, wheightW, A->adjacent[vertexV]);
 	A->adjacent[vertexW] = newNode(vertexV, wheightW, A->adjacent[vertexW]);
+	
 	/*O numero de arestas é atualizado*/
 	A->numberOfEdges++;
+	
+	/*Atualiza o vetor binario*/
+	binaryVector[vertexV] = 1;
+	binaryVector[vertexW] = 1;
 }
 
 
@@ -85,9 +91,13 @@ Graph graphIn(char *fileAddress){
 	/*Inicia um grafo G*/
 	Graph G = graphInit(numberOfVertex, 1);
 	int vertexU, vertexV, wheightW;
+
+	/*Iniciar o vetor binario*/
+	int binaryVector[numberOfVertex];
+
 	/*Adiciona arestas, vertices e pesos de arestas*/
 	while((fscanf(fp, "%d %d %d", &vertexU, &vertexV, &wheightW)) != EOF){
-		insertEdge(G , vertexU, vertexV, wheightW);
+		insertEdge(G , vertexU, vertexV, wheightW, binaryVector);
 	}
 	fclose(fp);
 

@@ -18,9 +18,10 @@ struct node{
 
 Graph minimumSpanningTree(Graph G);
 Graph graphInit(int size, int initiate);
+Graph graphIn(char *fileAddress);
+link leastWheight(Graph G, Graph A, int *binaryVector);
 link newNode(int vertexW, int wheightW, link next);
 void insertEdge(Graph A, int vertexV, int vertexW, int wheightW, int *binaryVector);
-int isEdge(Graph A, int vertexV, int vertexW);
-Graph graphIn(char *fileAddress);
 void graphOut(Graph A);
-void initVector(int *vector);
+void initVector(int *vector, int size);
+int isEdge(Graph A, int vertexV, int vertexW);
