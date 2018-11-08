@@ -19,7 +19,7 @@ struct node{
 Graph minimumSpanningTree(Graph G);
 Graph graphInit(int size, int initiate);
 link newNode(int vertexW, int wheightW, link next);
-void insertEdge(Graph A, int vertexV, int vertexW, int wheightW);
+void insertEdge(Graph A, int vertexV, int vertexW, int wheightW, int *binaryVector);
 int isEdge(Graph A, int vertexV, int vertexW);
 Graph graphIn(char *fileAddress);
 void graphOut(Graph A);

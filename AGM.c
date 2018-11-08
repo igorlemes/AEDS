@@ -159,7 +159,8 @@ Graph minimumSpanningTree(Graph G){
 		aux = leastWheight(G, A, binaryVector);
 		
 		/*Insere uma aresta na AGM*/
-		insertEdge(A, int vertexV, int vertexW, int wheightW)
+		insertEdge(A, aux->added, aux->vertex, aux->wheight, binaryVector);
+		A->numberOfVertex++;
 	}
 	
 }
